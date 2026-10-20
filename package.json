@@ -1,0 +1,14 @@
+{
+  "name": "har-sanitizer",
+  "version": "0.3.2",
+  "description": "Local-first HAR redaction: Chrome extension + CLI sharing one engine.",
+  "type": "module",
+  "bin": {
+    "har-sanitize": "bin/har-sanitize.mjs"
+  },
+  "scripts": {
+    "test": "node tests/run.mjs",
+    "package": "bash scripts/package.sh"
+  },
+  "license": "MIT"
+}

@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>HAR Sanitizer</title><link rel="stylesheet" href="panel.css"></head>
+<body>
+<header class="bar">
+  <button id="rec" class="rec on" aria-pressed="true" title="Pause or resume capturing"><span class="dot"></span><span id="recLabel">Recording</span></button>
+  <button id="clear" title="Clear the capture and re-apply current settings">Clear</button>
+  <button id="import" title="Add requests DevTools already recorded before you opened this panel">Import existing</button>
+  <label class="scope">Only hosts <input id="scope" placeholder="all  (e.g. api.example.com)" spellcheck="false"></label>
+  <label class="chk"><input id="keep" type="checkbox" checked> Keep across page loads</label>
+  <span class="grow"></span>
+  <button id="settings" title="Open the full settings page">Settings</button>
+  <button id="share" class="primary" disabled title="Stops recording, runs the leak check, then downloads the sanitized .har">Share-ready ✓</button>
+</header>
+<section class="bar sub2">
+  <div class="level" title="How aggressively to guess at random-looking strings">
+    <span class="lbl">Over-redaction</span>
+    <input id="level" type="range" min="0" max="2" step="1" aria-label="Over-redaction level">
+    <span id="levelName" class="lvname"></span>
+  </div>
+  <span id="levelHint" class="hint grow"></span>
+  <span id="site" class="pill"></span>
+  <button id="saveProfile" title="Remember the current preset, level and rules for this website">Save site profile</button>
+  <button id="delProfile" hidden>Remove profile</button>
+</section>
+<section class="stats">
+  <span><b id="nCap">0</b> captured</span><span><b id="nRed">0</b> values redacted</span><span><b id="nDrop">0</b> dropped</span>
+  <span class="meter" title="Approximate size of the sanitized capture held in memory"><b id="size">0 B</b> / <select id="limit" aria-label="Memory limit"></select><i><u id="meterFill"></u></i></span>
+  <span class="grow"></span><a class="pill ok" id="local" href="../app/local.html" target="_blank" rel="noopener">● Local only — prove it</a>
+</section>
+<div id="banner" class="banner" hidden></div>
+<div id="verdict" class="verdict" hidden></div>
+<main class="split">
+  <section class="listwrap">
+    <table id="list"><thead><tr><th>Method</th><th>Status</th><th>Sanitized URL</th><th>Redacted</th></tr></thead><tbody></tbody></table>
+    <div id="empty" class="empty">
+      <p><b>Recording is on.</b> Use the page (or reload it): requests appear here already redacted. Click a row to review its values.</p>
+      <p><button id="sample">Try it with a sample (fake secrets)</button></p>
+    </div>
+  </section>
+  <aside id="detail" class="detail" hidden>
+    <div class="dh"><b id="dTitle"></b><button id="dClose" aria-label="Close">×</button></div>
+    <div class="dtools">
+      <input id="dFilter" type="search" placeholder="Filter values…" spellcheck="false">
+      <label class="chk"><input id="dOnly" type="checkbox"> only redacted</label>
+      <label class="chk">Save rules for <select id="dScope"><option value="site">this site</option><option value="all">all sites</option></select></label>
+    </div>
+    <p class="hint">Redacted values: <b>Keep</b> stops redacting that value everywhere. Visible values: <b>Always redact</b> hides it everywhere. Rules are saved and show up in the full settings.</p>
+    <div id="dList"></div>
+  </aside>
+</main>
+<script type="module" src="panel.js"></script>
+</body></html>

@@ -1,0 +1,22 @@
+<!-- "Install the Chrome extension" banner for your web HAR pages (Release 3, item 14).
+     Paste just before </body>. Set STORE_URL below once the listing is live.
+     It is a plain link: no tracking. The only script remembers "dismissed" in this visitor's own browser. -->
+<div id="har-ext-banner" hidden style="display:none">
+  <style>
+    #har-ext-banner{position:sticky;bottom:0;z-index:50;font:14px/1.4 system-ui,sans-serif;background:#0f766e;color:#fff;padding:10px 16px;align-items:center;gap:12px;justify-content:center;flex-wrap:wrap}
+    #har-ext-banner a.go{background:#fff;color:#0f766e;text-decoration:none;font-weight:600;padding:6px 12px;border-radius:8px}
+    #har-ext-banner button{background:none;border:0;color:#fff;font-size:18px;cursor:pointer}
+  </style>
+  <span>Sanitize HAR files right inside DevTools: redact secrets as you record, 100% local.</span>
+  <a class="go" href="STORE_URL" target="_blank" rel="noopener">Install the Chrome extension</a>
+  <button type="button" id="har-ext-x" aria-label="Dismiss">×</button>
+</div>
+<script>
+(function () {
+  var b = document.getElementById('har-ext-banner'), k = 'har-ext-banner-dismissed';
+  try { if (localStorage.getItem(k)) return; } catch (e) {}
+  if (b.querySelector('a.go').getAttribute('href') === 'STORE_URL') return; // not configured yet
+  b.hidden = false; b.style.display = 'flex';
+  document.getElementById('har-ext-x').onclick = function () { b.style.display = 'none'; try { localStorage.setItem(k, '1'); } catch (e) {} };
+})();
+</script>

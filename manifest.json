@@ -1,0 +1,29 @@
+{
+  "manifest_version": 3,
+  "name": "HAR Sanitizer \u2014 Redact Secrets Locally",
+  "version": "0.3.2",
+  "description": "Redact cookies, tokens, passwords and personal data from HAR files before you share them. 100% local \u2014 nothing is ever uploaded.",
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "action": {
+    "default_title": "Open HAR Sanitizer",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "48": "icons/icon48.png"
+    }
+  },
+  "background": {
+    "service_worker": "src/background.js",
+    "type": "module"
+  },
+  "permissions": [
+    "storage"
+  ],
+  "content_security_policy": {
+    "extension_pages": "script-src 'self'; object-src 'self'; connect-src 'none'"
+  },
+  "devtools_page": "devtools/devtools.html"
+}

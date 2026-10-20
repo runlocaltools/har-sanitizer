@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Prove it’s local — HAR Sanitizer</title><link rel="stylesheet" href="app.css"></head>
+<body><main class="page">
+  <div class="brand"><span class="logo" aria-hidden="true"></span><h1>Prove it’s local</h1></div>
+  <p class="lead">“Nothing leaves your device” is a claim you should not have to take on trust. Everything below is read live from this installed extension.</p>
+  <div class="proof">
+    <div><div class="big" id="permCount">…</div><div>permission requested</div><p class="meta" id="hostPerm"></p></div>
+    <div><div class="big" id="extCount">…</div><div>network requests made by this page</div><p class="meta">Counted from the browser’s own resource log for this page.</p></div>
+    <div><div class="big" id="blocked">…</div><div>outgoing connections the browser allows</div><p class="meta">Enforced by the extension’s content-security policy.</p></div>
+  </div>
+  <h2>Permissions</h2>
+  <table class="perm" id="permTable"></table>
+  <h2>Try to make it phone home</h2>
+  <p>This button tries to send a request to an outside server from this very page. The browser should refuse.</p>
+  <p><button id="probe">Try to send data out</button> <span id="probeOut" class="meta"></span></p>
+  <h2>Content-security policy</h2>
+  <pre class="code" id="csp"></pre>
+  <p class="meta"><code>connect-src 'none'</code> means pages of this extension cannot open any network connection (fetch, XHR, WebSocket, beacons), and <code>script-src 'self'</code> means no remote code can be loaded.</p>
+  <h2>Verify it yourself</h2>
+  <ol>
+    <li>Open <code>chrome://extensions</code>, find HAR Sanitizer, click <b>Details</b>. Check <b>Site access</b>: it should list no sites.</li>
+    <li>Open this page’s DevTools → <b>Network</b>, then sanitize the sample file. You will see no requests to any server.</li>
+    <li>Read the code: the extension is plain, unminified JavaScript. Search it for network calls. The only match for <code>fetch(</code> is a text template in <code>src/summary.js</code> that writes a snippet for you to copy; it is never run.</li>
+  </ol>
+  <p id="source" class="meta" hidden></p>
+  <p><a href="app.html">← Back to the app</a></p>
+</main><script type="module" src="local.js"></script></body></html>

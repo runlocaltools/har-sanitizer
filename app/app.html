@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>HAR Sanitizer</title>
+<link rel="stylesheet" href="app.css">
+</head>
+<body>
+<header class="top">
+  <div class="brand"><span class="logo" aria-hidden="true"></span><h1>HAR Sanitizer</h1></div>
+  <details class="menu"><summary>More local tools ▾</summary><div class="menubox" data-tools></div></details>
+  <a class="badge" href="local.html" title="See the proof: one permission, network access blocked by the browser.">● Local only — nothing is uploaded · prove it</a>
+</header>
+<main class="layout">
+  <section class="main">
+    <div id="dz" class="dropzone" tabindex="0" role="button" aria-label="Add HAR files">
+      <b>+ Add HAR files</b>
+      <span>Click, or drag &amp; drop — .har or .json from Chrome, Firefox, Safari or Edge</span>
+      <input id="file" type="file" accept=".har,.json,application/json" multiple hidden>
+    </div>
+    <p class="trysample"><button id="sample" type="button">Try a sample HAR (fake secrets)</button> <span class="meta">See the tool work in seconds, no file needed.</span></p>
+    <p id="note" class="note" hidden></p>
+    <div id="files"></div>
+  </section>
+  <aside class="side">
+    <h2>Preset</h2>
+    <div id="presets" class="seg"></div>
+    <p id="presetHint" class="hint"></p>
+    <h2>Over-redaction</h2>
+    <input id="level" type="range" min="0" max="2" step="1" aria-label="Over-redaction level" class="slider">
+    <div class="ticks"><span>Readable</span><span>Balanced</span><span>Thorough</span></div>
+    <p id="levelHint" class="hint"></p>
+    <h2>Placeholder style</h2>
+    <div id="styles" class="seg"></div>
+    <div id="settings"></div>
+    <details class="sec"><summary>Share rules with your team</summary>
+      <p class="hint">Rules are your settings (presets, custom names, regexes). Kept values are not included.</p>
+      <div class="actions"><button id="rulesExport" type="button">Export rules</button><label class="filebtn">Import rules<input id="rulesImport" type="file" accept=".json,application/json" hidden></label></div>
+    </details>
+    <details class="sec"><summary>Restore originals</summary>
+      <p class="hint">Put the real values back into a sanitized HAR using the encrypted mapping you saved earlier.</p>
+      <div class="field"><label>Encrypted mapping</label><input id="restoreMap" type="file" accept=".json"></div>
+      <div class="field"><label>Sanitized HAR</label><input id="restoreHar" type="file" accept=".har,.json"></div>
+      <div class="field"><label>Passphrase</label><input id="restorePass" type="password" autocomplete="off"></div>
+      <button id="restoreGo" type="button">Restore</button><p id="restoreOut" class="hint"></p>
+    </details>
+    <button id="zip" class="primary" disabled>Download all (.zip)</button>
+    <button id="reset" class="ghost">Reset settings</button>
+  </aside>
+</main>
+<script type="module" src="app.js"></script>
+<script type="module" src="tools.js"></script>
+</body>
+</html>

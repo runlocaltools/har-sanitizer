@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Welcome — HAR Sanitizer</title><link rel="stylesheet" href="app.css"></head>
+<body><main class="page">
+  <div class="brand"><span class="logo" aria-hidden="true"></span><h1>HAR Sanitizer is installed</h1></div>
+  <p class="lead">Redact cookies, tokens, passwords and personal data from network recordings before you share them. Everything stays on your device.</p>
+  <h2>Get started in 3 steps</h2>
+  <ol class="steps">
+    <li><b>Open DevTools on the page with the problem</b>Press <kbd>F12</kbd> (Windows/Linux) or <kbd>⌥⌘I</kbd> (Mac). The extension adds a tab there, not a toolbar button.</li>
+    <li><b>Click the “HAR Sanitizer” tab</b>It sits next to Network, Console and the rest. If you do not see it, click the <kbd>»</kbd> at the end of the tab row. Then reproduce the problem: requests show up already redacted.</li>
+    <li><b>Click “Share-ready ✓”</b>It stops recording, re-scans for leftover secrets, shows a clear verdict and downloads the sanitized .har.</li>
+  </ol>
+  <div class="cta">
+    <a class="primary" href="app.html?sample=1">Try a sample in 10 seconds</a>
+    <a href="app.html">Open the full app (drop a .har file)</a>
+    <a href="local.html">Prove it’s local</a>
+  </div>
+  <h2>More local tools</h2>
+  <div class="cta" data-tools></div>
+  <p class="meta">Tip: the toolbar icon opens the full app, which sanitizes .har files you already have.</p>
+</main><script type="module" src="tools.js"></script></body></html>
